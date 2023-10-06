@@ -15,7 +15,6 @@ pipeline {
         
         stage('Compile Code') {
             steps {
-                // Compile the code using Maven
                 sh 'mvn compile'
             }
         }
