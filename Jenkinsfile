@@ -5,34 +5,35 @@ pipeline {
         // Define the Maven tool named 'mymaven'
         maven 'mymaven'
     }
+    
     stages {
         stage('Clone Repos') {
             steps {
+                // Clone the Git repository
                 git url: 'https://github.com/RaphDevOps/PURDUE-DevOpsCodeDemo.git'
             }
         }
         
         stage('Compile Code') {
             steps {
+                // Compile the code using Maven
                 sh 'mvn compile'
             }
         }
         
-         
-        stage('Test Code') {
+        stage('Code Review') {
             steps {
-                // Run tests using Maven
-                sh 'mvn test'
+                // Run PMD analysis and store the results in pmd.xml
+                sh 'mvn pmd:pmd'
             }
-            post{
-                success{
-                    
-                    junit 'target/surefire-reports/*.xml'
+            
+            post {
+                success {
+                    // Record PMD issues
+                    recordIssues(tools: [pmdParser(pattern: '**/pmd.xml')])
                 }
             }
         }
+    }
+}
         
-       
-
-        
-       
