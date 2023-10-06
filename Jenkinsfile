@@ -22,7 +22,6 @@ pipeline {
         
         stage('code review') {
             steps {
-                // Compile the code using Maven
                 sh 'mvn pmd:pmd'
             }
             post {
