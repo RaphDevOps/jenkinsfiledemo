@@ -8,7 +8,6 @@ pipeline {
     stages {
         stage('Clone Repos') {
             steps {
-                // Clone the Git repository
                 git url: 'https://github.com/RaphDevOps/PURDUE-DevOpsCodeDemo.git'
             }
         }
