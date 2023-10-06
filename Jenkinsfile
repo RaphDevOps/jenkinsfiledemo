@@ -43,11 +43,4 @@ pipeline {
             }
         }
         
-        stage('Package Code') {
-            steps {
-                // Package the code using Maven
-                sh 'mvn package'
-            }
-        }
-    }
-}
+      
