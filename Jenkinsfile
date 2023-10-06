@@ -18,16 +18,21 @@ pipeline {
             }
         }
         
-        stage('code review') {
+         
+        stage('Test Code') {
             steps {
-                sh 'mvn pmd:pmd'
+                // Run tests using Maven
+                sh 'mvn test'
             }
-            post {
-                
+            post{
                 success{
-                    recordIssues(tools: [pmdParser(pattern: '**/pmd.xml')])
+                    
+                    junit 'target/surefire-reports/*.xml'
                 }
             }
         }
+        
+       
+
         
        
