@@ -29,25 +29,4 @@ pipeline {
                 }
             }
         }
-        
-        stage('Test Code') {
-            steps {
-                // Run tests using Maven
-                sh 'mvn test'
-            }
-            post{
-                success{
-                    
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
-        }
-        
-        stage('Package Code') {
-            steps {
-                // Package the code using Maven
-                sh 'mvn package'
-            }
-        }
-    }
-}
+     
